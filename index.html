@@ -1,0 +1,1984 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Julien Garcia · Développeur front-end Vue.js</title>
+    <meta
+      name="description"
+      content="Julien Garcia, développeur front-end Vue.js et Nuxt basé à Aix-en-Provence. Réalisations : application Vue 3 / Nuxt en six langues, agents IA, application mobile full-stack."
+    />
+    <link rel="canonical" href="https://julien-garcia1.github.io/" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#7B2338" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta
+      property="og:title"
+      content="Julien Garcia · Développeur front-end Vue.js"
+    />
+    <meta
+      property="og:description"
+      content="Julien Garcia, développeur front-end Vue.js et Nuxt basé à Aix-en-Provence. Réalisations : application Vue 3 / Nuxt en six langues, agents IA, application mobile full-stack."
+    />
+    <meta property="og:url" content="https://julien-garcia1.github.io/" />
+    <meta
+      property="og:image"
+      content="https://julien-garcia1.github.io/assets/photo.jpg"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Julien Garcia",
+        "jobTitle": "Développeur front-end Vue.js",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Aix-en-Provence",
+          "addressCountry": "FR"
+        },
+        "url": "https://julien-garcia1.github.io/",
+        "image": "https://julien-garcia1.github.io/assets/photo.jpg",
+        "sameAs": [
+          "https://github.com/julien-garcia1",
+          "https://www.linkedin.com/in/julien-garcia1/"
+        ],
+        "knowsAbout": [
+          "Vue.js",
+          "Nuxt",
+          "Pinia",
+          "Playwright",
+          "SCSS",
+          "Agents IA"
+        ]
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Poppins:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap"
+    />
+    <style>
+      /* Mise en page : la colonne de libellés du CV, agrandie — libellé de section à gauche, contenu à droite, filets fins entre les sections. */
+      :root {
+        --bg: #fcfafa;
+        --fg: #1d1618;
+        --muted: #6a5d61;
+        --rule: #e9e1e3;
+        --surface: #f4eeef;
+        --accent: #7b2338;
+        --accent-soft: #f6e8ec;
+        --on-accent: #ffffff;
+        --bezel: #241c1f;
+        --overlay: rgba(14, 9, 11, 0.9);
+        --on-overlay: #ffffff;
+        --overlay-line: rgba(255, 255, 255, 0.28);
+        --overlay-fill: rgba(255, 255, 255, 0.08);
+        --font-display:
+          'Poppins', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+        --font-body:
+          'Source Sans 3', 'Segoe UI', system-ui, -apple-system, sans-serif;
+        --font-mono:
+          'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas,
+          monospace;
+        --wrap: 1120px;
+        --header-h: 64px;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme='light']) {
+          --bg: #141011;
+          --fg: #f1ebec;
+          --muted: #a99c9f;
+          --rule: #2c2326;
+          --surface: #1c1618;
+          --accent: #e3809a;
+          --accent-soft: #2c1a20;
+          --on-accent: #1a0f12;
+          --bezel: #322a2d;
+          color-scheme: dark;
+        }
+      }
+      :root[data-theme='dark'] {
+        --bg: #141011;
+        --fg: #f1ebec;
+        --muted: #a99c9f;
+        --rule: #2c2326;
+        --surface: #1c1618;
+        --accent: #e3809a;
+        --accent-soft: #2c1a20;
+        --on-accent: #1a0f12;
+        --bezel: #322a2d;
+        color-scheme: dark;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          transition: none !important;
+        }
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--font-body);
+        font-size: 1.0625rem;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0 0 auto;
+        height: env(safe-area-inset-top, 0px);
+        z-index: 10;
+        background: var(--bg);
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      a {
+        color: inherit;
+        text-underline-offset: 3px;
+        text-decoration-thickness: 1px;
+      }
+      a:hover {
+        color: var(--accent);
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-display);
+        text-wrap: balance;
+        margin: 0;
+      }
+      p {
+        margin: 0;
+      }
+      ul,
+      ol {
+        margin: 0;
+        padding: 0;
+      }
+
+      .wrap {
+        max-width: var(--wrap);
+        margin: 0 auto;
+        padding-left: max(16px, env(safe-area-inset-left, 0px));
+        padding-right: max(16px, env(safe-area-inset-right, 0px));
+      }
+      @media (min-width: 900px) {
+        .wrap {
+          padding-left: max(40px, env(safe-area-inset-left, 0px));
+          padding-right: max(40px, env(safe-area-inset-right, 0px));
+        }
+      }
+
+      .skip {
+        position: absolute;
+        left: 16px;
+        top: -48px;
+        z-index: 30;
+        background: var(--accent);
+        color: var(--on-accent);
+        padding: 8px 14px;
+        border-radius: 6px;
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-decoration: none;
+      }
+      .skip:focus {
+        top: calc(env(safe-area-inset-top, 0px) + 12px);
+      }
+
+      /* En-tête */
+      .site-header {
+        position: sticky;
+        top: env(safe-area-inset-top, 0px);
+        z-index: 20;
+        background: var(--bg);
+        border-bottom: 1px solid var(--rule);
+      }
+      .site-header .wrap {
+        height: var(--header-h);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .brand {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        white-space: nowrap;
+      }
+      .brand-mark {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--accent);
+        color: var(--on-accent);
+        display: grid;
+        place-items: center;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 24px;
+        list-style: none;
+      }
+      .nav-links a {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: 0.875rem;
+        text-decoration: none;
+        color: var(--muted);
+      }
+      .nav-links a:hover {
+        color: var(--fg);
+      }
+      @media (max-width: 760px) {
+        .nav-links {
+          display: none;
+        }
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 0.875rem;
+        line-height: 1;
+        padding: 11px 18px;
+        border-radius: 999px;
+        text-decoration: none;
+        cursor: pointer;
+        border: 1px solid var(--accent);
+        transition:
+          background-color 0.15s,
+          color 0.15s,
+          border-color 0.15s;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: var(--on-accent);
+      }
+      .btn-primary:hover {
+        color: var(--on-accent);
+        filter: brightness(1.08);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--accent);
+      }
+      .btn-ghost:hover {
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+      .btn-small {
+        padding: 8px 14px;
+        font-size: 0.8125rem;
+      }
+      .btn svg {
+        width: 16px;
+        height: 16px;
+        flex: none;
+      }
+
+      /* Accueil */
+      .hero {
+        padding-block: 72px 64px;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 160px minmax(0, 1fr);
+        gap: 40px;
+        align-items: center;
+      }
+      .portrait {
+        width: 160px;
+        height: auto;
+        aspect-ratio: 1;
+        max-width: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        background: var(--surface);
+      }
+      .eyebrow {
+        font-family: var(--font-mono);
+        font-size: 0.8125rem;
+        color: var(--muted);
+        letter-spacing: 0.02em;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 14px;
+        margin-bottom: 14px;
+      }
+      .eyebrow .dot {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .eyebrow .dot::before {
+        content: '';
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .hero h1 {
+        font-size: clamp(2.4rem, 6vw, 3.75rem);
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        line-height: 1.05;
+      }
+      .role {
+        font-family: var(--font-display);
+        font-weight: 500;
+        color: var(--accent);
+        font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+        margin-top: 8px;
+        letter-spacing: -0.01em;
+      }
+      .pitch {
+        max-width: 62ch;
+        margin-top: 20px;
+        color: var(--fg);
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+        align-items: center;
+      }
+      .icon-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: 0.875rem;
+        text-decoration: none;
+        color: var(--muted);
+        padding: 8px 4px;
+      }
+      .icon-link:hover {
+        color: var(--accent);
+      }
+      .icon-link svg {
+        width: 18px;
+        height: 18px;
+      }
+      @media (max-width: 640px) {
+        .hero {
+          padding-block: 40px 40px;
+        }
+        .hero-grid {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 24px;
+        }
+        .portrait {
+          width: 112px;
+        }
+      }
+
+      /* Sections */
+      .section {
+        display: grid;
+        grid-template-columns: 180px minmax(0, 1fr);
+        gap: 24px 48px;
+        padding-block: 64px;
+        border-top: 1px solid var(--rule);
+        scroll-margin-top: calc(var(--header-h) + 8px);
+      }
+      .section-label {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 0.75rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        padding-top: 6px;
+      }
+      .section-intro {
+        color: var(--muted);
+        max-width: 62ch;
+        margin-bottom: 8px;
+      }
+      @media (max-width: 760px) {
+        .section {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 16px;
+          padding-block: 44px;
+        }
+        .section-label {
+          padding-top: 0;
+        }
+      }
+
+      /* Réalisations */
+      .projects {
+        display: grid;
+      }
+      .project {
+        display: grid;
+        gap: 18px;
+        padding-block: 40px;
+        border-top: 1px solid var(--rule);
+      }
+      .project:first-of-type {
+        padding-top: 8px;
+        border-top: 0;
+      }
+      .project-meta {
+        font-family: var(--font-mono);
+        font-size: 0.8125rem;
+        color: var(--muted);
+      }
+      .project h3 {
+        font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+        font-weight: 600;
+        letter-spacing: -0.015em;
+        line-height: 1.25;
+        margin-top: 6px;
+      }
+      .project-summary {
+        max-width: 62ch;
+        color: var(--fg);
+      }
+      .project-body {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        gap: 36px;
+        align-items: start;
+      }
+      .project-body.single {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      @media (max-width: 900px) {
+        .project-body {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 24px;
+        }
+      }
+      .did-title {
+        font-family: var(--font-display);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      .did {
+        list-style: none;
+        display: grid;
+        gap: 8px;
+      }
+      .did li {
+        position: relative;
+        padding-left: 20px;
+      }
+      .did li::before {
+        content: '';
+        position: absolute;
+        left: 2px;
+        top: 0.68em;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        list-style: none;
+      }
+      .chip {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        line-height: 1.4;
+        padding: 4px 9px;
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        color: var(--fg);
+        background: var(--bg);
+      }
+      .chip-accent {
+        background: var(--accent-soft);
+        border-color: transparent;
+        color: var(--accent);
+      }
+      .note {
+        font-size: 0.9375rem;
+        color: var(--muted);
+      }
+      .locales {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 10px;
+      }
+      .locales-label {
+        font-size: 0.9375rem;
+        color: var(--muted);
+      }
+
+      /* Emplacements pour captures */
+      .frame {
+        margin: 0;
+        border: 1px solid var(--rule);
+        background: var(--bg);
+        overflow: hidden;
+      }
+      .frame-browser {
+        border-radius: 10px;
+      }
+      .frame-bar {
+        display: flex;
+        gap: 6px;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--rule);
+        background: var(--surface);
+      }
+      .frame-bar span {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--rule);
+      }
+      .frame-screen {
+        aspect-ratio: 16 / 10;
+        max-width: 100%;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 16px;
+        background: repeating-linear-gradient(
+          135deg,
+          var(--surface) 0 10px,
+          var(--bg) 10px 20px
+        );
+      }
+      .frame-screen p {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--muted);
+        background: var(--bg);
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: 1px solid var(--rule);
+      }
+      .frame-phone {
+        width: 210px;
+        max-width: 100%;
+        border-radius: 30px;
+        padding: 10px;
+        justify-self: center;
+        background: var(--surface);
+      }
+      .frame-phone .frame-screen {
+        aspect-ratio: 9 / 18;
+        border-radius: 22px;
+        border: 1px solid var(--rule);
+      }
+
+      /* Schémas des agents */
+      .flow-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        font-size: 0.875rem;
+        color: var(--muted);
+      }
+      .flow-legend span {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .swatch {
+        width: 14px;
+        height: 14px;
+        border-radius: 4px;
+        border: 1px solid var(--accent);
+      }
+      .swatch-agent {
+        background: var(--accent-soft);
+        border-color: transparent;
+      }
+      .flow-scroll {
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+      .flow {
+        list-style: none;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(130px, 1fr);
+        gap: 26px;
+        min-width: 0;
+      }
+      .step {
+        position: relative;
+        border-radius: 10px;
+        padding: 14px 14px 16px;
+        background: var(--accent-soft);
+        border: 1px solid transparent;
+        display: grid;
+        gap: 6px;
+        align-content: start;
+      }
+      .step.human {
+        background: var(--bg);
+        border: 1px dashed var(--accent);
+      }
+      .step-index {
+        font-family: var(--font-mono);
+        font-size: 0.6875rem;
+        color: var(--accent);
+        letter-spacing: 0.04em;
+      }
+      .step-title {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 0.9375rem;
+        line-height: 1.3;
+      }
+      .step-text {
+        font-size: 0.875rem;
+        line-height: 1.45;
+        color: var(--muted);
+      }
+      .step .chips {
+        margin-top: 2px;
+      }
+      .step .chip {
+        font-size: 0.6875rem;
+        padding: 2px 6px;
+      }
+      .step:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: -20px;
+        width: 12px;
+        height: 2px;
+        background: var(--accent);
+      }
+      .step:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        top: calc(50% - 4px);
+        right: -21px;
+        width: 0;
+        height: 0;
+        border-left: 6px solid var(--accent);
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+      }
+      @media (max-width: 760px) {
+        .flow {
+          grid-auto-flow: row;
+          grid-auto-columns: auto;
+          gap: 22px;
+        }
+        .step:not(:last-child)::after {
+          top: auto;
+          bottom: -17px;
+          right: auto;
+          left: 22px;
+          width: 2px;
+          height: 12px;
+        }
+        .step:not(:last-child)::before {
+          top: auto;
+          bottom: -20px;
+          right: auto;
+          left: 18px;
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-top: 6px solid var(--accent);
+          border-bottom: 0;
+        }
+      }
+
+      /* Architecture du projet perso */
+      .arch {
+        display: grid;
+        gap: 14px;
+        justify-items: stretch;
+        max-width: 460px;
+        width: 100%;
+        justify-self: center;
+      }
+      .arch-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
+      }
+      .node {
+        border: 1px solid var(--rule);
+        border-radius: 10px;
+        padding: 12px 14px;
+        background: var(--bg);
+        display: grid;
+        gap: 4px;
+      }
+      .node-title {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 0.9375rem;
+      }
+      .node-tech {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+      .status {
+        justify-self: start;
+        font-family: var(--font-mono);
+        font-size: 0.6875rem;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        margin-top: 4px;
+      }
+      .arch-arrow {
+        justify-self: center;
+        width: 2px;
+        height: 18px;
+        background: var(--accent);
+        position: relative;
+      }
+      .arch-arrow::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: -4px;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 6px solid var(--accent);
+      }
+
+      /* Galeries de captures */
+      .galleries {
+        display: grid;
+        gap: 36px;
+        min-width: 0;
+      }
+      .gallery-group {
+        display: grid;
+        gap: 14px;
+        min-width: 0;
+      }
+      .gallery-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 2px 12px;
+      }
+      .gallery-title {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 0.9375rem;
+      }
+      .gallery-tech {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+      .gallery {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+        max-width: 700px;
+        min-width: 0;
+      }
+      .shot {
+        display: grid;
+        gap: 10px;
+        align-content: start;
+      }
+      .shot-link {
+        display: block;
+        padding: 6px;
+        border-radius: 26px;
+        background: var(--bezel);
+        cursor: zoom-in;
+        transition: transform 0.2s ease;
+      }
+      .shot-link:hover {
+        transform: translateY(-3px);
+      }
+      .shot-link img {
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+        background: var(--surface);
+      }
+      .shot-caption {
+        font-size: 0.875rem;
+        line-height: 1.4;
+        color: var(--muted);
+        text-align: center;
+        padding-inline: 4px;
+      }
+      @media (max-width: 640px) {
+        .gallery {
+          grid-template-columns: none;
+          grid-auto-flow: column;
+          grid-auto-columns: 58%;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          overscroll-behavior-x: contain;
+          padding-bottom: 8px;
+          gap: 16px;
+        }
+        .shot {
+          scroll-snap-align: start;
+        }
+      }
+
+      /* Agrandissement */
+      .lightbox {
+        border: 0;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+        background: transparent;
+        color: var(--on-overlay);
+      }
+      .lightbox::backdrop {
+        background: var(--overlay);
+      }
+      .lightbox[open] {
+        display: grid;
+      }
+      .lb-inner {
+        position: relative;
+        display: grid;
+        grid-template-columns: 52px minmax(0, 1fr) 52px;
+        align-items: center;
+        gap: 12px;
+        height: 100%;
+        padding-top: max(56px, calc(env(safe-area-inset-top, 0px) + 56px));
+        padding-bottom: max(24px, env(safe-area-inset-bottom, 0px));
+        padding-left: max(16px, env(safe-area-inset-left, 0px));
+        padding-right: max(16px, env(safe-area-inset-right, 0px));
+      }
+      .lb-figure {
+        margin: 0;
+        display: grid;
+        justify-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+      .lb-figure img {
+        max-width: 100%;
+        max-height: calc(100dvh - 140px);
+        width: auto;
+        height: auto;
+        border-radius: 18px;
+      }
+      .lb-figure figcaption {
+        font-size: 0.9375rem;
+        text-align: center;
+        max-width: 50ch;
+      }
+      .lb-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1px solid var(--overlay-line);
+        background: var(--overlay-fill);
+        color: inherit;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        padding: 0;
+      }
+      .lb-btn:hover {
+        border-color: var(--on-overlay);
+      }
+      .lb-btn svg {
+        width: 20px;
+        height: 20px;
+      }
+      .lb-close {
+        position: absolute;
+        top: max(12px, env(safe-area-inset-top, 0px));
+        right: max(16px, env(safe-area-inset-right, 0px));
+      }
+      @media (max-width: 640px) {
+        .lb-inner {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: minmax(0, auto) auto;
+          align-content: center;
+        }
+        .lb-figure {
+          grid-column: 1 / -1;
+          grid-row: 1;
+        }
+        .lb-prev {
+          grid-row: 2;
+          justify-self: end;
+        }
+        .lb-next {
+          grid-row: 2;
+          justify-self: start;
+        }
+        .lb-figure img {
+          max-height: calc(100dvh - 200px);
+        }
+      }
+
+      /* Compétences */
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 32px 40px;
+      }
+      .skill-group h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+
+      /* Parcours */
+      .timeline {
+        list-style: none;
+        display: grid;
+      }
+      .timeline li {
+        display: grid;
+        grid-template-columns: 150px minmax(0, 1fr);
+        gap: 4px 24px;
+        padding-block: 16px;
+        border-top: 1px solid var(--rule);
+      }
+      .timeline li:first-child {
+        border-top: 0;
+        padding-top: 4px;
+      }
+      .timeline time,
+      .timeline .when {
+        font-family: var(--font-mono);
+        font-size: 0.8125rem;
+        color: var(--muted);
+        padding-top: 3px;
+        font-variant-numeric: tabular-nums;
+      }
+      .timeline strong {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 1rem;
+        display: block;
+        line-height: 1.35;
+      }
+      .timeline .where {
+        color: var(--muted);
+        font-size: 0.9375rem;
+      }
+      @media (max-width: 560px) {
+        .timeline li {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+
+      /* Contact */
+      .contact-lead {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        max-width: 24ch;
+      }
+      .contact-text {
+        color: var(--muted);
+        max-width: 58ch;
+        margin-top: 12px;
+      }
+      .contact-rows {
+        display: grid;
+        gap: 0;
+        margin-top: 28px;
+        max-width: 640px;
+      }
+      .contact-row {
+        display: grid;
+        grid-template-columns: 110px minmax(0, 1fr) auto;
+        gap: 8px 16px;
+        align-items: center;
+        padding-block: 14px;
+        border-top: 1px solid var(--rule);
+      }
+      .contact-row:last-child {
+        border-bottom: 1px solid var(--rule);
+      }
+      .contact-key {
+        font-family: var(--font-display);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .contact-value {
+        font-family: var(--font-mono);
+        font-size: 0.9375rem;
+        overflow-wrap: anywhere;
+        min-width: 0;
+      }
+      .copy-btn {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: 0.8125rem;
+        color: var(--accent);
+        background: transparent;
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+        padding: 6px 12px;
+        cursor: pointer;
+      }
+      .copy-btn:hover {
+        border-color: var(--accent);
+      }
+      @media (max-width: 560px) {
+        .contact-row {
+          grid-template-columns: minmax(0, 1fr) auto;
+        }
+        .contact-key {
+          grid-column: 1 / -1;
+        }
+      }
+
+      .site-footer {
+        border-top: 1px solid var(--rule);
+      }
+      .site-footer .wrap {
+        padding-block: 28px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 8px 24px;
+        font-size: 0.875rem;
+        color: var(--muted);
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#contenu">Aller au contenu</a>
+
+    <header class="site-header">
+      <div class="wrap">
+        <a
+          class="brand"
+          href="#top"
+          aria-label="Julien Garcia, retour en haut de page"
+        >
+          <span class="brand-mark" aria-hidden="true">JG</span>
+          <span>Julien Garcia</span>
+        </a>
+        <nav class="nav" aria-label="Navigation principale">
+          <ul class="nav-links">
+            <li><a href="#realisations">Réalisations</a></li>
+            <li><a href="#competences">Compétences</a></li>
+            <li><a href="#parcours">Parcours</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <a
+            class="btn btn-ghost btn-small"
+            href="assets/CV_Julien_Garcia.pdf"
+            target="_blank"
+            rel="noopener"
+            >CV (PDF)</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenu">
+      <section class="hero" id="top" aria-labelledby="titre-accueil">
+        <div class="wrap hero-grid">
+          <img
+            class="portrait"
+            src="assets/photo.jpg"
+            width="600"
+            height="600"
+            alt="Portrait de Julien Garcia"
+          />
+          <div>
+            <p class="eyebrow">
+              <span class="dot">En recherche d’un CDI</span>
+              <span>Aix-en-Provence</span>
+            </p>
+            <h1 id="titre-accueil">Julien Garcia</h1>
+            <p class="role">Développeur front-end Vue.js · Nuxt</p>
+            <p class="pitch">
+              Je développe des interfaces en Vue.js depuis plus de cinq ans :
+              des composants réutilisables, accessibles et performants, testés
+              avant d’être livrés. J’utilise également l’IA au quotidien dans
+              mon travail pour m'accompagner et je conçois des agents qui
+              prennent en charge une partie du travail de l’équipe, toujours
+              sous relecture humaine.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#realisations"
+                >Voir mes réalisations</a
+              >
+              <a
+                class="btn btn-ghost"
+                href="assets/CV_Julien_Garcia.pdf"
+                target="_blank"
+                rel="noopener"
+                >Télécharger mon CV</a
+              >
+              <a
+                class="icon-link"
+                href="https://github.com/julien-garcia1"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1S18.7.7 16 2.5a13.4 13.4 0 0 0-7 0C6.3.7 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.7c0 5.4 3.3 6.6 6.4 7A3.4 3.4 0 0 0 9 18.1V22"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                class="icon-link"
+                href="https://www.linkedin.com/in/julien-garcia1/"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"
+                  />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <section
+          class="section"
+          id="realisations"
+          aria-labelledby="titre-realisations"
+        >
+          <h2 class="section-label" id="titre-realisations">Réalisations</h2>
+          <div class="projects">
+            <article class="project" aria-labelledby="p-lc">
+              <div>
+                <p class="project-meta">
+                  2021 – 2026 · Little Cigogne · salarié puis freelance
+                </p>
+                <h3 id="p-lc">
+                  Le front-end Vue 3 / Nuxt d’une application en six langues
+                </h3>
+              </div>
+              <p class="project-summary">
+                Little Cigogne et Plumaïa envoient des Malles de vêtements
+                composées par des stylistes, pour les enfants et pour les
+                femmes. Pendant cinq ans, j’ai développé et fait évoluer le
+                site, et participé à l’application mobile, avec le CTO, les
+                développeurs backend et l’équipe produit.
+              </p>
+              <div class="project-body">
+                <div>
+                  <p class="did-title">Ce que j’ai fait</p>
+                  <ul class="did">
+                    <li>
+                      Développement des fonctionnalités en Vue 3, Pinia et Nuxt.
+                    </li>
+                    <li>
+                      Référent CSS de l’équipe : conventions SCSS, cohérence et
+                      maintenabilité des composants.
+                    </li>
+                    <li>Tests end-to-end avec Playwright.</li>
+                    <li>
+                      Optimisation des performances et de l’expérience
+                      utilisateur.
+                    </li>
+                    <li>
+                      Participation à l’application mobile en Dart / Flutter.
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  style="
+                    display: grid;
+                    gap: 16px;
+                    min-width: 0;
+                    align-content: start;
+                  "
+                >
+                  <div class="locales">
+                    <span class="locales-label">Locales :</span>
+                    <ul class="chips" aria-label="Langues de l’application">
+                      <li class="chip chip-accent">FR</li>
+                      <li class="chip chip-accent">DE</li>
+                      <li class="chip chip-accent">NL</li>
+                      <li class="chip chip-accent">ES</li>
+                      <li class="chip chip-accent">IT</li>
+                      <li class="chip chip-accent">PT</li>
+                    </ul>
+                  </div>
+                  <ul class="chips" aria-label="Technologies">
+                    <li class="chip">Vue 3</li>
+                    <li class="chip">Pinia</li>
+                    <li class="chip">Nuxt</li>
+                    <li class="chip">SCSS</li>
+                    <li class="chip">Playwright</li>
+                    <li class="chip">Flutter</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="galleries">
+                <div class="gallery-group" data-gallery>
+                  <p class="gallery-head">
+                    <span class="gallery-title">Site web</span
+                    ><span class="gallery-tech"
+                      >Vue 3 · Pinia · Nuxt · vue mobile</span
+                    >
+                  </p>
+                  <ul class="gallery">
+                    <li class="shot">
+                      <a class="shot-link" href="assets/lc-web-accueil.jpg"
+                        ><img
+                          src="assets/lc-web-accueil.jpg"
+                          width="390"
+                          height="797"
+                          loading="lazy"
+                          alt="Page d’accueil du site Little Cigogne sur mobile : message de bienvenue et choix entre une Malle pour femme ou pour enfant"
+                      /></a>
+                      <p class="shot-caption">
+                        Accueil : choix de l’univers de la Malle
+                      </p>
+                    </li>
+                    <li class="shot">
+                      <a class="shot-link" href="assets/lc-web-looks.jpg"
+                        ><img
+                          src="assets/lc-web-looks.jpg"
+                          width="390"
+                          height="797"
+                          loading="lazy"
+                          alt="Section des looks sur mobile : carrousel de tenues composées par des stylistes, avec le prix de chaque pièce"
+                      /></a>
+                      <p class="shot-caption">
+                        Carrousel des looks composés par les stylistes
+                      </p>
+                    </li>
+                    <li class="shot">
+                      <a class="shot-link" href="assets/lc-web-wishlist.jpg"
+                        ><img
+                          src="assets/lc-web-wishlist.jpg"
+                          width="390"
+                          height="797"
+                          loading="lazy"
+                          alt="Wishlist sur mobile : suggestions de vêtements filtrables par type pour orienter la prochaine Malle"
+                      /></a>
+                      <p class="shot-caption">
+                        Wishlist : coups de cœur et filtres
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="gallery-group" data-gallery>
+                  <p class="gallery-head">
+                    <span class="gallery-title">Application mobile</span
+                    ><span class="gallery-tech">Flutter</span>
+                  </p>
+                  <ul class="gallery">
+                    <li class="shot">
+                      <a class="shot-link" href="assets/lc-app-accueil.jpg"
+                        ><img
+                          src="assets/lc-app-accueil.jpg"
+                          width="720"
+                          height="1391"
+                          loading="lazy"
+                          alt="Accueil de l’application Little Cigogne : Malles en cours et choix du profil pour une nouvelle Malle"
+                      /></a>
+                      <p class="shot-caption">
+                        Accueil : Malles en cours et profils
+                      </p>
+                    </li>
+                    <li class="shot">
+                      <a class="shot-link" href="assets/lc-app-wishlist.jpg"
+                        ><img
+                          src="assets/lc-app-wishlist.jpg"
+                          width="720"
+                          height="1391"
+                          loading="lazy"
+                          alt="Wishlist de l’application : 329 suggestions filtrées par profil et par taille"
+                      /></a>
+                      <p class="shot-caption">
+                        Wishlist filtrée par profil et taille
+                      </p>
+                    </li>
+                    <li class="shot">
+                      <a class="shot-link" href="assets/lc-app-produit.jpg"
+                        ><img
+                          src="assets/lc-app-produit.jpg"
+                          width="720"
+                          height="1391"
+                          loading="lazy"
+                          alt="Fiche produit de l’application : choix de la taille, composition, entretien et suggestions de produits"
+                      /></a>
+                      <p class="shot-caption">
+                        Fiche produit : tailles et suggestions
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="project" aria-labelledby="p-trad">
+              <div>
+                <p class="project-meta">Little Cigogne · agent IA</p>
+                <h3 id="p-trad">
+                  Un agent qui traduit les nouveaux textes dans cinq langues
+                </h3>
+              </div>
+              <p class="project-summary">
+                À partir des textes rédigés en français, l’agent produit les
+                traductions des cinq autres locales, les soumet à l’équipe
+                internationale et les importe une fois validées.
+              </p>
+              <div class="flow-legend" aria-hidden="true">
+                <span
+                  ><i class="swatch swatch-agent"></i>Étape faite par
+                  l’agent</span
+                >
+                <span><i class="swatch"></i>Étape faite par l’équipe</span>
+              </div>
+              <div class="flow-scroll">
+                <ol class="flow" aria-label="Étapes de l’agent de traduction">
+                  <li class="step">
+                    <span class="step-index">1</span>
+                    <span class="step-title">Nouveaux textes</span>
+                    <span class="step-text">Rédigés en français</span>
+                  </li>
+                  <li class="step">
+                    <span class="step-index">2</span>
+                    <span class="step-title">Traduction</span>
+                    <ul class="chips" aria-label="Langues cibles">
+                      <li class="chip">DE</li>
+                      <li class="chip">NL</li>
+                      <li class="chip">ES</li>
+                      <li class="chip">IT</li>
+                      <li class="chip">PT</li>
+                    </ul>
+                  </li>
+                  <li class="step">
+                    <span class="step-index">3</span>
+                    <span class="step-title">Message Slack</span>
+                    <span class="step-text"
+                      >Envoyé au canal de l’équipe internationale</span
+                    >
+                  </li>
+                  <li class="step human">
+                    <span class="step-index">4 · équipe</span>
+                    <span class="step-title">Validation</span>
+                    <span class="step-text">Relecture des traductions</span>
+                  </li>
+                  <li class="step">
+                    <span class="step-index">5</span>
+                    <span class="step-title">Import</span>
+                    <span class="step-text">En base preprod, puis prod</span>
+                  </li>
+                </ol>
+              </div>
+            </article>
+
+            <article class="project" aria-labelledby="p-dev">
+              <div>
+                <p class="project-meta">Little Cigogne · agent IA</p>
+                <h3 id="p-dev">
+                  Un agent qui traite les petits tickets du back-office jusqu’à
+                  la pull request
+                </h3>
+              </div>
+              <p class="project-summary">
+                L’agent lit le ticket, accède au back et au back-office,
+                développe la modification et ouvre une pull request. Un message
+                Slack déclenche ensuite une relecture humaine.
+              </p>
+              <div class="flow-legend" aria-hidden="true">
+                <span
+                  ><i class="swatch swatch-agent"></i>Étape faite par
+                  l’agent</span
+                >
+                <span><i class="swatch"></i>Étape faite par l’équipe</span>
+              </div>
+              <div class="flow-scroll">
+                <ol
+                  class="flow"
+                  aria-label="Étapes de l’agent de développement"
+                >
+                  <li class="step">
+                    <span class="step-index">1</span>
+                    <span class="step-title">Lecture du ticket</span>
+                    <span class="step-text">Petit ticket du back-office</span>
+                  </li>
+                  <li class="step">
+                    <span class="step-index">2</span>
+                    <span class="step-title">Analyse</span>
+                    <span class="step-text"
+                      >Accès au back et au back-office</span
+                    >
+                  </li>
+                  <li class="step">
+                    <span class="step-index">3</span>
+                    <span class="step-title">Développement</span>
+                    <span class="step-text">Modification du code</span>
+                  </li>
+                  <li class="step">
+                    <span class="step-index">4</span>
+                    <span class="step-title">Pull request</span>
+                    <span class="step-text">Ouverte avec un message Slack</span>
+                  </li>
+                  <li class="step human">
+                    <span class="step-index">5 · équipe</span>
+                    <span class="step-title">Relecture humaine</span>
+                    <span class="step-text">Avant toute fusion</span>
+                  </li>
+                </ol>
+              </div>
+            </article>
+
+            <article class="project" aria-labelledby="p-amef">
+              <div>
+                <p class="project-meta">Projet personnel · en cours</p>
+                <h3 id="p-amef">
+                  Avant Match en Folie, une application - Projet full-stack
+                </h3>
+              </div>
+              <p class="project-summary">
+                Une application de quiz sur les matchs de football : chaque
+                week-end, on répond aux quiz des matchs, on gagne des points
+                pour monter de niveau et on se mesure à ses amis dans des
+                ligues. Je mène ce projet seul, de la modélisation de
+                l'architecture, à la définition des besoins, en passant par le
+                développement et le déploiement. Ce projet m'a appris beaucoup
+                de choses sur la gestion d'un produit en autonomie. Il me permet
+                également de tester de nouvelles technologies, de me former à
+                des pratiques de développement que je n’ai pas encore eu
+                l’occasion d’utiliser dans mon travail.
+              </p>
+              <div class="gallery-group" data-gallery>
+                <ul
+                  class="gallery"
+                  aria-label="Captures d’écran d’Avant Match en Folie"
+                >
+                  <li class="shot">
+                    <a class="shot-link" href="assets/amef-accueil.jpg"
+                      ><img
+                        src="assets/amef-accueil.jpg"
+                        width="720"
+                        height="1391"
+                        loading="lazy"
+                        alt="Accueil d’Avant Match en Folie : niveau du joueur, résultats du quiz du Clásico et quiz du week-end"
+                    /></a>
+                    <p class="shot-caption">
+                      Accueil : niveau, résultats et quiz du week-end
+                    </p>
+                  </li>
+                  <li class="shot">
+                    <a class="shot-link" href="assets/amef-stats.jpg"
+                      ><img
+                        src="assets/amef-stats.jpg"
+                        width="720"
+                        height="1391"
+                        loading="lazy"
+                        alt="Statistiques : 43 % de réussite, 162 points et classement entre amis"
+                    /></a>
+                    <p class="shot-caption">Statistiques et classement</p>
+                  </li>
+                  <li class="shot">
+                    <a class="shot-link" href="assets/amef-ligues.jpg"
+                      ><img
+                        src="assets/amef-ligues.jpg"
+                        width="720"
+                        height="1391"
+                        loading="lazy"
+                        alt="Mes ligues : ligue Europe et ligue Tous championnats, avec la progression des journées"
+                    /></a>
+                    <p class="shot-caption">
+                      Ligues et progression des journées
+                    </p>
+                  </li>
+                </ul>
+              </div>
+              <div class="project-body">
+                <div style="display: grid; gap: 20px; min-width: 0">
+                  <div>
+                    <p class="did-title">Ce que j’ai fait</p>
+                    <ul class="did">
+                      <li>
+                        Application mobile en Flutter, actuellement en phase de
+                        tests fermée.
+                      </li>
+                      <li>API Node.js / Express et base MongoDB, déployées.</li>
+                      <li>Back-office en React, déployé.</li>
+                      <li>
+                        Définition des besoins, développement assisté par IA et
+                        déploiement, en autonomie.
+                      </li>
+                    </ul>
+                  </div>
+                  <ul class="chips" aria-label="Technologies">
+                    <li class="chip">Flutter</li>
+                    <li class="chip">Node.js</li>
+                    <li class="chip">Express</li>
+                    <li class="chip">MongoDB</li>
+                    <li class="chip">React</li>
+                  </ul>
+                  <p class="note">
+                    Code privé : démonstration possible en entretien.
+                  </p>
+                </div>
+                <div
+                  class="arch"
+                  role="img"
+                  aria-label="Architecture : l’application mobile Flutter et le back-office React appellent l’API Node.js / Express, qui s’appuie sur MongoDB."
+                >
+                  <div class="arch-row">
+                    <div class="node">
+                      <span class="node-title">App mobile</span
+                      ><span class="node-tech">Flutter</span
+                      ><span class="status">tests fermés</span>
+                    </div>
+                    <div class="node">
+                      <span class="node-title">Back-office</span
+                      ><span class="node-tech">React</span
+                      ><span class="status">déployé</span>
+                    </div>
+                  </div>
+                  <span class="arch-arrow" aria-hidden="true"></span>
+                  <div class="node">
+                    <span class="node-title">API</span
+                    ><span class="node-tech">Node.js / Express</span
+                    ><span class="status">déployée</span>
+                  </div>
+                  <span class="arch-arrow" aria-hidden="true"></span>
+                  <div class="node">
+                    <span class="node-title">Base de données</span
+                    ><span class="node-tech">MongoDB</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section
+          class="section"
+          id="competences"
+          aria-labelledby="titre-competences"
+        >
+          <h2 class="section-label" id="titre-competences">Compétences</h2>
+          <div class="skills">
+            <div class="skill-group">
+              <h3>Front-end Vue.js</h3>
+              <ul class="chips">
+                <li class="chip chip-accent">Vue 3</li>
+                <li class="chip chip-accent">Pinia</li>
+                <li class="chip chip-accent">Nuxt</li>
+                <li class="chip">Vue 2 / Vuex</li>
+                <li class="chip">JavaScript ES6+</li>
+                <li class="chip">HTML5</li>
+                <li class="chip">CSS3</li>
+                <li class="chip">Sass / SCSS</li>
+                <li class="chip">Tailwind CSS</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Qualité, performance et UI</h3>
+              <ul class="chips">
+                <li class="chip">Playwright</li>
+                <li class="chip">Performance</li>
+                <li class="chip">SEO</li>
+                <li class="chip">Accessibilité</li>
+                <li class="chip">Responsive</li>
+                <li class="chip">Atomic Design</li>
+                <li class="chip">Storybook</li>
+                <li class="chip">Figma</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>IA</h3>
+              <ul class="chips">
+                <li class="chip">Claude</li>
+                <li class="chip">ChatGPT</li>
+                <li class="chip">Agents IA</li>
+                <li class="chip">Automatisation Slack</li>
+                <li class="chip">PR automatisées</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Également pratiqué</h3>
+              <ul class="chips">
+                <li class="chip">React</li>
+                <li class="chip">Node.js / Express</li>
+                <li class="chip">MongoDB</li>
+                <li class="chip">Dart / Flutter</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="parcours" aria-labelledby="titre-parcours">
+          <h2 class="section-label" id="titre-parcours">Parcours</h2>
+          <ol class="timeline">
+            <li>
+              <span class="when">2021 – 2026</span>
+              <div>
+                <strong>Développeur front-end Vue.js / mobile Flutter</strong
+                ><span class="where"
+                  >Little Cigogne, Paris · salarié jusqu’en août 2026, puis
+                  freelance jusqu’à mi-décembre</span
+                >
+              </div>
+            </li>
+            <li>
+              <span class="when">2020 – 2021</span>
+              <div>
+                <strong>Développeur front-end et intégrateur web</strong
+                ><span class="where"
+                  >Freelance, Paris · sites vitrines et applications web</span
+                >
+              </div>
+            </li>
+            <li>
+              <span class="when">2020</span>
+              <div>
+                <strong>Concepteur-développeur d’applications web</strong
+                ><span class="where">Le Wagon Lyon</span>
+              </div>
+            </li>
+            <li>
+              <span class="when">2017 – 2020</span>
+              <div>
+                <strong
+                  >Bachelor puis Master stratégie de marque et marketing
+                  digital</strong
+                ><span class="where">IDRAC Lyon</span>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <section class="section" id="contact" aria-labelledby="titre-contact">
+          <h2 class="section-label" id="titre-contact">Contact</h2>
+          <div>
+            <p class="contact-lead">
+              Je recherche un CDI de développeur front-end Vue.js.
+            </p>
+            <p class="contact-text">
+              Basé à Aix-en-Provence. Écrivez-moi pour échanger sur un poste ou
+              demander une démonstration de mes projets.
+            </p>
+            <div class="contact-rows">
+              <div class="contact-row">
+                <span class="contact-key">Email</span>
+                <a
+                  class="contact-value"
+                  id="email-value"
+                  href="mailto:juliengarcia788@gmail.com"
+                  >juliengarcia788@gmail.com</a
+                >
+                <button
+                  class="copy-btn"
+                  type="button"
+                  id="copy-email"
+                  data-copy="juliengarcia788@gmail.com"
+                >
+                  Copier
+                </button>
+              </div>
+              <div class="contact-row">
+                <span class="contact-key">LinkedIn</span>
+                <a
+                  class="contact-value"
+                  href="https://www.linkedin.com/in/julien-garcia1/"
+                  target="_blank"
+                  rel="noopener"
+                  >linkedin.com/in/julien-garcia1</a
+                >
+                <span></span>
+              </div>
+              <div class="contact-row">
+                <span class="contact-key">GitHub</span>
+                <a
+                  class="contact-value"
+                  href="https://github.com/julien-garcia1"
+                  target="_blank"
+                  rel="noopener"
+                  >github.com/julien-garcia1</a
+                >
+                <span></span>
+              </div>
+              <div class="contact-row">
+                <span class="contact-key">CV</span>
+                <a
+                  class="contact-value"
+                  href="assets/CV_Julien_Garcia.pdf"
+                  target="_blank"
+                  rel="noopener"
+                  >CV_Julien_Garcia.pdf</a
+                >
+                <span></span>
+              </div>
+            </div>
+            <p class="sr-only" id="copy-status" aria-live="polite"></p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>Julien Garcia · 2026</span>
+        <span>Page statique en HTML et CSS, hébergée sur GitHub Pages</span>
+      </div>
+    </footer>
+
+    <dialog class="lightbox" id="lightbox" aria-labelledby="lb-caption">
+      <div class="lb-inner">
+        <button
+          class="lb-btn lb-close"
+          type="button"
+          id="lb-close"
+          aria-label="Fermer"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+        <button
+          class="lb-btn lb-prev"
+          type="button"
+          id="lb-prev"
+          aria-label="Capture précédente"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M15 5l-7 7 7 7" />
+          </svg>
+        </button>
+        <figure class="lb-figure">
+          <img id="lb-img" alt="" />
+          <figcaption id="lb-caption"></figcaption>
+        </figure>
+        <button
+          class="lb-btn lb-next"
+          type="button"
+          id="lb-next"
+          aria-label="Capture suivante"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </dialog>
+
+    <script>
+      (function () {
+        var dlg = document.getElementById('lightbox');
+        if (!dlg || typeof dlg.showModal !== 'function') return;
+        var img = document.getElementById('lb-img');
+        var cap = document.getElementById('lb-caption');
+        var items = [],
+          index = 0,
+          opener = null;
+
+        function show(i) {
+          index = (i + items.length) % items.length;
+          var link = items[index];
+          img.src = link.getAttribute('href');
+          img.alt = link.querySelector('img').alt;
+          cap.textContent = link
+            .closest('.shot')
+            .querySelector('.shot-caption').textContent;
+        }
+
+        Array.prototype.forEach.call(
+          document.querySelectorAll('[data-gallery] .shot-link'),
+          function (link) {
+            link.addEventListener('click', function (e) {
+              e.preventDefault();
+              items = Array.prototype.slice.call(
+                link.closest('[data-gallery]').querySelectorAll('.shot-link'),
+              );
+              opener = link;
+              show(items.indexOf(link));
+              dlg.showModal();
+            });
+          },
+        );
+
+        document
+          .getElementById('lb-prev')
+          .addEventListener('click', function () {
+            show(index - 1);
+          });
+        document
+          .getElementById('lb-next')
+          .addEventListener('click', function () {
+            show(index + 1);
+          });
+        document
+          .getElementById('lb-close')
+          .addEventListener('click', function () {
+            dlg.close();
+          });
+        dlg.addEventListener('click', function (e) {
+          if (e.target === dlg || e.target.classList.contains('lb-inner'))
+            dlg.close();
+        });
+        dlg.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowLeft') show(index - 1);
+          if (e.key === 'ArrowRight') show(index + 1);
+        });
+        dlg.addEventListener('close', function () {
+          if (opener) opener.focus();
+        });
+      })();
+
+      (function () {
+        var btn = document.getElementById('copy-email');
+        var status = document.getElementById('copy-status');
+        if (!btn) return;
+        function done(label) {
+          btn.textContent = label;
+          status.textContent = label === 'Copié' ? 'Adresse email copiée' : '';
+          setTimeout(function () {
+            btn.textContent = 'Copier';
+          }, 2000);
+        }
+        btn.addEventListener('click', function () {
+          var text = btn.getAttribute('data-copy');
+          try {
+            navigator.clipboard.writeText(text).then(function () {
+              done('Copié');
+            }, fallback);
+          } catch (e) {
+            fallback();
+          }
+          function fallback() {
+            var el = document.getElementById('email-value');
+            var range = document.createRange();
+            range.selectNodeContents(el);
+            var sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+            done('Sélectionné');
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
